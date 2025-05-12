@@ -23,7 +23,9 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 
 
     if ($resultado->num_rous==1) {
-        $_SESSION['usuario']==$usuario;
+        $fila=$resultado->ferch_assoc()
+        $_SESSION['usuario']=$fila['usuario'];
+        $_SESSION['rol']=$fila['rol']; //Campo nuevo en la base de datos  [usuario/administrador]
         header("location:principal.php");
         exit();
     }
