@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 
 
     if ($resultado->num_rous==1) {
-        $fila=$resultado->ferch_assoc()
+        $fila=$resultado->ferch_assoc();
         $_SESSION['usuario']=$fila['usuario'];
         $_SESSION['rol']=$fila['rol']; //Campo nuevo en la base de datos  [usuario/administrador]
         header("location:principal.php");
