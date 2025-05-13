@@ -1,44 +1,61 @@
 
-<?php
-//1ra parte
-session_start();
-include("bdconect.php");
 
-//Si hay sesión redirige
-if (!empty($_SESSION)) {
-    header("location:principal.php");
+<?php
+//PARTE 1
+session_start();
+include("dbconect.php");
+
+// Si hay sesión, redirigir
+if ($resultado->num_rows == 1) {
+    $_SESSION["usuario"] = $usuario;
+    header("Location: principal.php");
     exit();
 }
 
+//PARTE 2
+// Si se envió el formulario
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $usuario = $_POST["usuario"] ?? '';
+    $clave = $_POST["clave"] ?? '';
 
-//2da parte
-if ($_SERVER["REQUEST_METHOD"]=="POST") {
-    $usuario=$_POST['usuario']??";
-    $clave=$_POST['clave']??";
-    $sql="SELECT * FROM usuario WHERE  usuario=? AND  clave=?";
-    $stml=$con->prepare($sql);
-    $stml->bind_param("ss",$usuario,$clave);
-    $stml ->execute();
-    $resultado=$stml->get_result();
+    $sql = "SELECT * FROM usuarios WHERE usuario=? AND clave=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $usuario, $clave);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
 
-
-    if ($resultado->num_rous==1) {
-        $_SESSION['usuario']==$usuario;
-        header("location:principal.php");
+    if ($resultado->num_rows == 1) {
+        $_SESSION["usuario"] = $usuario;
+        header("Location: principal.php");
         exit();
-    }
-    else{
-        $error="DATOS INCORRECTOS";
+    } else {
+        $error = "Datos incorrectos";
     }
 }
 
-?>
-
-<!--3ra parte-->
+//PARTE 3
 <form method="POST" action="">
-    Usuario<input type="text" value="usuario"><br>
-    Clave<input type="password" value="clave"><br>
+    Usuario: <input type="text" name="usuario"><br>
+    Clave: <input type="password" name="clave"><br>
     <input type="submit" value="Ingresar">
 </form>
 
-<?php if(isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
+<?php
+if (isset($error)) {
+    echo "<p style='color:red;'>$error</p>";
+}
+?>
+
+//PARTE 4
+<?php
+$host = 'localhost';
+$user = 'root';
+$pass = '';
+$dbname = 'mibase';
+
+$conn = new mysqli($host, $user, $pass, $dbname);
+
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+?>
