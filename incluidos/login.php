@@ -25,11 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!-- PARTE 3: Formulario HTML -->
+<center>
 <form method="POST" action="">
     Usuario: <input type="text" name="usuario"><br>
+    <br>
     Clave: <input type="password" name="clave"><br>
     <input type="submit" value="Ingresar">
 </form>
+</center>
 
 <?php
 // Mostrar mensaje de error si existe
