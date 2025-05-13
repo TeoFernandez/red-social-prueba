@@ -3,13 +3,15 @@
 $host = 'localhost';
 $user = 'root';
 $pass = '';
-$dbname = 'mi_base';
+$dbname = 'mibase';
+$port = 3307; // Especificar el puerto
 
-$conn = new mysqli($host,$user,$pass,$dbname);
+// Conexión con el puerto incluido
+$conn = new mysqli($host, $user, $pass, $dbname, $port);
 
-if($conn -> connect_error){
-    die("Conexión fellida: ".$conn->connect_error);
-
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
 }
 
 ?>

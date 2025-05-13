@@ -1,19 +1,9 @@
-
-
 <?php
-//PARTE 1
+// PARTE 1: Iniciar sesión y conectar a la base de datos
 session_start();
-include("dbconect.php");
+include("bdconect.php");
 
-// Si hay sesión, redirigir
-if ($resultado->num_rows == 1) {
-    $_SESSION["usuario"] = $usuario;
-    header("Location: principal.php");
-    exit();
-}
-
-//PARTE 2
-// Si se envió el formulario
+// PARTE 2: Procesar formulario de login
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = $_POST["usuario"] ?? '';
     $clave = $_POST["clave"] ?? '';
@@ -32,8 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Datos incorrectos";
     }
 }
+?>
 
-//PARTE 3
+<!-- PARTE 3: Formulario HTML -->
 <form method="POST" action="">
     Usuario: <input type="text" name="usuario"><br>
     Clave: <input type="password" name="clave"><br>
@@ -41,21 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 
 <?php
+// Mostrar mensaje de error si existe
 if (isset($error)) {
     echo "<p style='color:red;'>$error</p>";
-}
-?>
-
-//PARTE 
-<?php
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$dbname = 'mibase';
-
-$conn = new mysqli($host, $user, $pass, $dbname);
-
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
 }
 ?>
