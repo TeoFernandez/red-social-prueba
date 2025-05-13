@@ -46,7 +46,7 @@ if (isset($error)) {
 }
 ?>
 
-//PARTE 4
+//PARTE 
 <?php
 $host = 'localhost';
 $user = 'root';
