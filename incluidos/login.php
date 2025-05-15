@@ -53,8 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </center>
 
 <?php
-// PARTE 4: Mostrar mensaje de error si existe
 
+// PARTE 4: Mostrar mensaje de error si existe
 // Verifica si se definió un mensaje de error
 if (isset($error)) {
     // Muestra el mensaje de error en color rojo
