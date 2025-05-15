@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administracion de Usuarios</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
 <?php
 // Inicia una nueva sesión o reanuda la sesión existente
 session_start();
@@ -127,3 +137,10 @@ $usuarios = $conn->query("SELECT * FROM usuarios");
 
     <footer> </footer>
 </table>
+
+    
+</body>
+</html>
+
+
+
