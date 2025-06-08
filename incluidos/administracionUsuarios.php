@@ -141,6 +141,3 @@ $usuarios = $conn->query("SELECT * FROM usuarios");
     
 </body>
 </html>
-
-
-
